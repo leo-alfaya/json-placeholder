@@ -3,7 +3,12 @@
         <el-card 
             class="editor-card"
             shadow="hover">
-            <span>{{ editor.name }}</span>
+            <div slot="header">
+                <p>{{ editor.name }}</p>
+            </div>
+            <p>Nome de Usuário: {{ editor.username }}</p>
+            <p>Email: {{ editor.email }}</p>
+            <p>Cidade: {{ editor.address.city }}</p>
         </el-card>
     </el-col>
 </template>

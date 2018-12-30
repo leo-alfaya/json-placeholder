@@ -4,7 +4,7 @@
         <el-main>
             <el-row :gutter="20">
                 <EditorCard 
-                    v-for="editor in editores" 
+                    v-for="editor in list" 
                     v-bind:editor="editor"
                     v-bind:key="editor.id">
                 </EditorCard>
@@ -14,6 +14,8 @@
 </template>
 
 <script>
+import { mapState, mapActions } from 'vuex' 
+
 import Header from '../common/Header'
 import EditorCard from './EditorCard'
 
@@ -23,17 +25,15 @@ export default {
         Header,
         EditorCard
     },
-    data() {
-        return {
-            editores: null
-        }
+    computed: {
+       ...mapState('editores', ['list']) 
     },
-    mounted() {
-        axios
-            .get('https://jsonplaceholder.typicode.com/users')
-            .then(response => (this.editores = response.data))
+    methods: {
+        ...mapActions('editores', ['getEditores'])
+    },
+    created () {
+        this.getEditores()
     }
-
 }
 </script>
 
