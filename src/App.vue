@@ -1,17 +1,12 @@
 <template>
   <div id="app">
-      <Editores></Editores>
+      <router-view></router-view>
   </div>
 </template>
 
 <script>
-import Editores from './components/editores/Editores'
-
 export default {
     name: 'app',
-    components: {
-        Editores
-    }
 }
 </script>
 

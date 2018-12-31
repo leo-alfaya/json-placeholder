@@ -4,7 +4,7 @@
         <el-main>
             <el-row :gutter="20">
                 <EditorCard 
-                    v-for="editor in list" 
+                    v-for="editor in editores" 
                     v-bind:editor="editor"
                     v-bind:key="editor.id">
                 </EditorCard>
@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex' 
+import { mapState } from 'vuex'
 
 import Header from '../common/Header'
 import EditorCard from './EditorCard'
@@ -25,15 +25,9 @@ export default {
         Header,
         EditorCard
     },
-    computed: {
-       ...mapState('editores', ['list']) 
-    },
-    methods: {
-        ...mapActions('editores', ['getEditores'])
-    },
-    created () {
-        this.getEditores()
-    }
+    computed: mapState({
+        editores: state => state.editores.list,
+    })
 }
 </script>
 

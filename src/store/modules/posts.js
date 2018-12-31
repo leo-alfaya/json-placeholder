@@ -1,20 +1,28 @@
 import axios from 'axios'
 
 const state = {
-    list: []
+    list: null
 }
 
 const actions = {
-    getEditores ({ commit }) {
+    getPosts ({ commit }) {
         axios
-            .get('https://jsonplaceholder.typicode.com/users')
-            .then(response => { commit('setEditores', response.data)})
+            .get('https://jsonplaceholder.typicode.com/posts')
+            .then(response => { commit('setPosts', response.data)})
     }
 }
 
 const mutations = {
-    setEditores (state, editores) {
-        state.list = editores
+    setPosts (state, posts) {
+        state.list = posts
+    }
+}
+
+const getters = {
+    countPostsByEditor: (state) => (id) => {
+        if(state.list){
+            return state.list.filter(editor => editor.userId == id).length
+        }
     }
 }
 
@@ -22,5 +30,6 @@ export default {
     namespaced: true,
     state,
     actions,
-    mutations
+    mutations,
+    getters
 }
