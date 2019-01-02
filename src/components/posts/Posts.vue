@@ -2,6 +2,7 @@
     <div class="posts">
         <Header :indexMenu="2"></Header>
         <el-main>
+            <TitlePage title="Posts"></TitlePage>
             <el-row :gutter="20">
                 <PostCard 
                     v-for="post in posts" 
@@ -15,12 +16,14 @@
 
 <script>
 import Header from '../common/Header'
+import TitlePage from '../common/TitlePage'
 import PostCard from './PostCard'
 
 export default {
     name: 'Posts',
     components: {
         Header,
+        TitlePage,
         PostCard
     },
     computed: {
