@@ -1,6 +1,6 @@
 <template>
     <div class="editores">
-        <Header></Header>
+        <Header :indexMenu="1"></Header>
         <el-main>
             <el-row :gutter="20">
                 <EditorCard 

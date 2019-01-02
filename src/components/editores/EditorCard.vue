@@ -1,16 +1,18 @@
 <template>
     <el-col :span="6">
-        <el-card 
-            class="editor-card"
-            shadow="hover">
-            <div slot="header">
-                <p>{{ editor.name }}</p>
-            </div>
-            <p>Nome de Usuário: {{ editor.username }}</p>
-            <p>Email: {{ editor.email }}</p>
-            <p>Cidade: {{ editor.address.city }}</p>
-            <p class="num-posts">Posts: {{ num_posts }}</p>
-        </el-card>
+        <router-link :to="{ name: 'user_posts', params: { id: editor.id }}">
+            <el-card 
+                class="editor-card"
+                shadow="hover">
+                <div slot="header">
+                    <p>{{ editor.name }}</p>
+                </div>
+                <p>Nome de Usuário: {{ editor.username }}</p>
+                <p>Email: {{ editor.email }}</p>
+                <p>Cidade: {{ editor.address.city }}</p>
+                <p class="num-posts">Posts: {{ num_posts }}</p>
+            </el-card>
+        </router-link>
     </el-col>
 </template>
 

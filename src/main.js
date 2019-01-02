@@ -15,7 +15,8 @@ new Vue({
     store: store,
     router: router,
     created () {
-        this.$store.dispatch('editores/getEditores')
+        this.$store.dispatch('editores/getEditors')
         this.$store.dispatch('posts/getPosts')
+        this.$store.dispatch('comentarios/getComments')
     }
 }).$mount('#app')

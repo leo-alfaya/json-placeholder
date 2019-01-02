@@ -5,22 +5,31 @@ const state = {
 }
 
 const actions = {
-    getEditores ({ commit }) {
+    getEditors ({ commit }) {
         axios
             .get('https://jsonplaceholder.typicode.com/users')
-            .then(response => { commit('setEditores', response.data)})
+            .then(response => { commit('setEditors', response.data)})
     }
 }
 
 const mutations = {
-    setEditores (state, editores) {
-        state.list = editores
+    setEditors (state, editors) {
+        state.list = editors
     }
+}
+
+const getters = {
+    getEditorById: (state) => (id) => {
+        if(state.list){
+            return state.list.find(user => user.id == id)
+        }
+    },
 }
 
 export default {
     namespaced: true,
     state,
     actions,
-    mutations
+    mutations,
+    getters
 }

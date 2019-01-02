@@ -19,9 +19,16 @@ const mutations = {
 }
 
 const getters = {
-    countPostsByEditor: (state) => (id) => {
+    getPostsByEditor: (state) => (id) => {
         if(state.list){
-            return state.list.filter(editor => editor.userId == id).length
+            return state.list.filter(post => post.userId == id)
+        }
+    },
+    countPostsByEditor: (state, getters) => (id) => {
+        let posts =  getters.getPostsByEditor(id)
+        
+        if(posts) {
+            return posts.length
         }
     }
 }

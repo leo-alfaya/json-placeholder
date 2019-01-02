@@ -1,39 +1,57 @@
 <template>
     <el-col :span="6">
         <el-card 
-            class="editor-card"
+            class="post-card"
             shadow="hover">
-            <div slot="header">
-                <p>{{ editor.name }}</p>
+            <div slot="header" class="post-header">
+                <p>{{ post.title }}</p>
             </div>
-            <p>Nome de Usuário: {{ editor.username }}</p>
-            <p>Email: {{ editor.email }}</p>
-            <p>Cidade: {{ editor.address.city }}</p>
-            <p class="num-posts">Posts: {{ num_posts }}</p>
+            <p class="post-content">{{ post.body }}</p>
+            <p class="nome-editor">Editor: {{ nome_editor }}</p>
+            <p class="num-comentarios">Comentários: {{ num_comentarios }}</p>
         </el-card>
     </el-col>
 </template>
 
 <script>
 export default {
-    name: "EditorCard",
+    name: "PostCard",
     props: {
-        editor: Object
+        post: Object
     },
     computed: {
-        num_posts() {
-            return this.$store.getters['posts/countPostsByEditor'](this.editor.id)
+        nome_editor() {
+            return this.$store.getters['editores/getEditorById'](this.post.userId).name
+        },
+        num_comentarios() {
+            return this.$store.getters['comentarios/countCommentsByPost'](this.post.id)
         }
     }
 }
 </script>
 
 <style lang="scss">
-.editor-card {
+.post-card {
     margin-bottom: 20px;
+    height: 300px;
+
+    .post-header {
+        text-transform: uppercase;
+        text-align: center;
+    }
+
+    .post-content {
+        text-align: justify;
+    }
+
+    .nome-editor {
+        font-weight: 700;
+        margin-top: 20px;
+    }
+
+    .num-comentarios {
+        font-weight: 700;
+    }
 } 
-.num-posts {
-    margin-top: 20px;
-    font-weight: 700;
-}
+
 </style>

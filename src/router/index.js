@@ -7,10 +7,12 @@ import Posts from '../components/posts/Posts'
 Vue.use(VueRouter)
 
 const routes =  [
-    { path: '/', component: Editores },
-    { path: '/posts/:id', component: Posts }
+    { path: '/', name: 'editores', component: Editores },
+    { path: '/posts', name: 'all_posts', component: Posts, },
+    { path: '/posts/:id', name: 'user_posts', component: Posts}
 ]
 
 export default new VueRouter({
+    mode: 'history',
     routes
 })

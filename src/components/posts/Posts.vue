@@ -1,15 +1,19 @@
 <template>
     <div class="posts">
-        <Header></Header>
+        <Header :indexMenu="2"></Header>
         <el-main>
-            <h1>teste</h1>
+            <el-row :gutter="20">
+                <PostCard 
+                    v-for="post in posts" 
+                    v-bind:post="post"
+                    v-bind:key="post.id">
+                </PostCard>
+            </el-row>
         </el-main>
     </div>
 </template>
 
 <script>
-import { mapState } from 'vuex'
-
 import Header from '../common/Header'
 import PostCard from './PostCard'
 
@@ -19,9 +23,15 @@ export default {
         Header,
         PostCard
     },
-    computed: mapState({
-        posts: state => state.posts.list,
-    })
+    computed: {
+        posts () {
+            if(!this.$route.params.id){
+               return this.$store.state.posts.list
+            } else {            
+                return this.$store.getters['posts/getPostsByEditor'](this.$route.params.id)
+            }
+        }
+    }
 }
 </script>
 
